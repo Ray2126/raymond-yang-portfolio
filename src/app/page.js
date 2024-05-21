@@ -19,7 +19,7 @@ export default function Home() {
 
         <h2>Skills and Expertise</h2>
 
-        <ul className="text-gray-400">
+        <ul>
           <li>Front-End: HTML, CSS, JavaScript, Vue.js, Vuex, React.js, Next.js</li>
           <li>Back-End: Node.js, Python, Python Flask</li>
           <li>DevOps: Docker, AWS</li>
