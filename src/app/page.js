@@ -37,7 +37,7 @@ export default function Home() {
 
         <h2>Let&apos;s Connect</h2>
 
-        <p>I&apos;d love to connect and discuss potential collaborations or opportunities. Feel free to reach out to me via email or connect with me on LinkedIn. Don&apos;t forget to check out my portfolio to see some of my latest projects.</p>
+        <p>I&apos;d love to connect and discuss potential collaborations or opportunities. Feel free to reach out to me via email. Don&apos;t forget to check out my portfolio to see some of my latest projects.</p>
       </article>
     </section>
   );
