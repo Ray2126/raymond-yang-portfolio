@@ -29,7 +29,7 @@ export default function Home() {
 
         <h2>Education</h2>
 
-        <p>Bachelors Degree in Computer from the University of Auckland</p>
+        <p>Bachelors Degree in Computer Science from the University of Auckland</p>
 
         <h2>Interests and Hobbies</h2>
 
