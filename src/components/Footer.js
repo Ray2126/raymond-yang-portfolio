@@ -1,11 +1,15 @@
 import Link from 'next/link';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { MdEmail } from "react-icons/md";
 
 export default function Footer() {
   return (
     <footer className="flex justify-between py-12 px-4">
       <div>&copy; Raymond Yang</div>
       <div className="flex justify-between space-x-8">
+        <Link href="mailto:raymondyang@outlook.co.nz">
+          <MdEmail className="w-7 h-7" />
+        </Link>
         <Link href="https://github.com/Ray2126" target="_blank">
           <FaGithub className="w-6 h-6" />
         </Link>
