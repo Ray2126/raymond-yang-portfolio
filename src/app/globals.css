@@ -6,6 +6,7 @@
   --primary-rgb: 12, 15, 17;
   --secondary-rbg: 238, 245, 252;
   --background-rgb: 168, 173, 178;
+  --hover-rgb: 67, 133, 215;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,8 +36,39 @@ body {
   }
 }
 
+@layer components {
+  .btn {
+    @apply
+      flex
+      items-center
+      border-color-primary
+      border-2
+      rounded-md
+      p-1
+    ;
+    transition: all .1s ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.01);
+  }
+
+  .pill {
+    @apply
+      border
+      rounded-full
+      py-1
+      px-3
+    ;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .border-color-primary {
+    border-color: rgb(var(--primary-rgb));
   }
 }
