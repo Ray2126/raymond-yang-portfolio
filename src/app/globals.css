@@ -57,7 +57,7 @@ body {
     @apply
       border
       rounded-full
-      py-1
+      py-0.5
       px-3
     ;
   }
