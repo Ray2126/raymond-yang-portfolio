@@ -12,7 +12,7 @@ const projects = [
     demoLink: 'https://play.google.com/store/apps/details?id=com.cryptotrackerapp123',
     githubLink: 'https://github.com/Ray2126/crypto-tracker',
     technologies: ['Javascript', 'React Native', 'Expo', 'CoinGecko API'],
-    image: '/cryptoTracker.png',
+    image: '/cryptoTracker.webp',
   },
   {
     name: 'Tabs',
@@ -22,7 +22,7 @@ const projects = [
     demoLink: 'https://www.capitalise.space/projects/654d7ef11d6ecfc86ae1e10c',
     githubLink: 'https://github.com/uoa-compsci399-s2-2023/capstone-project-team-9',
     technologies: ['Javascript', 'React Native', 'Expo', 'Microsoft Graph API', 'AWS Textract'],
-    image: '/tabs.png',
+    image: '/tabs.webp',
   },
 ];
 
