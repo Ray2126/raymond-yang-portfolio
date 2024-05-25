@@ -104,17 +104,18 @@ body {
 
   .mobile-menu {
     @apply
-      absolute
+      fixed
       top-0
       left-0
-      h-full
-      w-full
+      bottom-0
+      right-0
       flex
       flex-col
       items-center
       text-center
       py-10
       px-10
+      z-50
     ;
     background-color: rgb(var(--background-rgb));
   }
