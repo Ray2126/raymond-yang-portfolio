@@ -2,11 +2,23 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
 
 export default function Navbar() {
   const [ mobileMenuIsOpen, setMobileMenuIsOpen ] = useState(false);
+  const router = useRouter();
+
+  const handleLinkClick = (href) => {
+    router.push(href);
+    // Wait for route to change before closing the mobile menu to ensure the
+    // user does not see the previous screen
+    setTimeout(() => {
+      setMobileMenuIsOpen(false);
+    }, 100);
+  };
+
   return (
     <nav className="flex justify-between items-center py-2 md:py-8 px-2">
       <Link className="nav-link" href="/">Raymond Yang</Link>
@@ -25,12 +37,12 @@ export default function Navbar() {
               <RxCross1 className="h-7 w-7" onClick={() => setMobileMenuIsOpen(false)} />
             </button>
             <div className="text-2xl space-y-2 mt-8">
-              <Link className="nav-link" href="/" onClick={() => setMobileMenuIsOpen(false)}>Home</Link>
-              <Link className="nav-link" href="/blog" onClick={() => setMobileMenuIsOpen(false)}>Blog</Link>
-              <Link className="nav-link" href="/projects" onClick={() => setMobileMenuIsOpen(false)}>Projects</Link>
+              <button className="nav-link" onClick={() => handleLinkClick('/')}>Home</button>
+              <button className="nav-link" onClick={() => handleLinkClick('/blog')}>Blog</button>
+              <button className="nav-link" onClick={() => handleLinkClick('/projects')}>Projects</button>
             </div>
           </div>
-          : undefined
+          : null
         }
       </div>
     </nav>
