@@ -1,5 +1,3 @@
-# Raymond Yang
-
 Portfolio website for Raymond Yang built with Next.js and TailwindCSS. Deployed with Vercel.
 
 ## Live Demo
