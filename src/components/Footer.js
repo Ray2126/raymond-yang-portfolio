@@ -4,7 +4,7 @@ import { MdEmail } from "react-icons/md";
 
 export default function Footer() {
   return (
-    <footer className="flex justify-between py-12 px-4">
+    <footer className="flex justify-between py-12 px-4 mt-auto">
       <div>&copy; Raymond Yang</div>
       <div className="flex justify-between space-x-8">
         <Link className="styled-link-tertiary" href="mailto:raymondyang@outlook.co.nz">
