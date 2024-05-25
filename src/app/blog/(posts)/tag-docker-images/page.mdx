@@ -1,0 +1,52 @@
+import BlogHeader from '@/components/BlogHeader';
+import Link from 'next/link';
+
+export const metadata = {
+  title: '🐳 Always Tag Docker Images in Docker Compose Files',
+  publishDate: '2024-05-25T01:20:31.409Z',
+  readTimeMins: 3,
+  category: 'Programming'
+};
+
+<BlogHeader post={{
+  title: metadata.title,
+  publishDate: metadata.publishDate,
+  readTimeMins: metadata.readTimeMins,
+  category: metadata.category,
+}} />
+
+Not long ago, I ran into an issue while running automated end-to-end tests. All the tests were failing in my local environment. I asked my colleagues to run the same tests in their local environment. Surprisingly, the tests passed on their machines.
+
+The classic “works on my machine” paradigm.
+
+Ultimately, I figured out the issue was because I had an older version of the image. I was using a Docker Compose file to orchestrate my containers and one of the images was untagged. An older version of the image existed in my local Docker registry. This version did not have support for a command line option that was used in our set-up.
+
+The issue was fixed by removing the local Docker image. Let's dive deeper into how that worked.
+
+## What is the local Docker registry?
+
+Every time a Docker image is pulled down from DockerHub, it is saved to the local Docker registry. The local Docker registry also contains the version of each image — the “tag.”
+
+Before pulling down an image from DockerHub, Docker will check for the image with the same tag in the local Docker registry. If Docker finds a match, it will not pull down the image and use the image that already exists.
+
+If the tag is not defined for an image, Docker will default it to the :latest tag.
+
+## What does the :latest tag mean?
+
+The name of the :latest tag indicates that it is always the latest version of the image. However, this is not the case. :latest means the latest version of the image at the point in time it was last pulled.
+
+If you were to pull down an image with the :latest tag, you would get the latest version of the image. 6 months later, attempting to pull the same image down again will do nothing, even if there was a newer version of the image. This is because Docker will see you have a matching image and tag in your local Docker registry.
+
+## Problems with the :latest tag
+
+The :latest tag can cause many issues. The issue described in this article is to do with version instability.
+
+The nature of the :latest tag means that the version of the image that is pulled down depends on when you pulled it down. This makes it quite likely that everyone will NOT be running the same version of the image.
+
+This was the root cause of the issue described in the introduction. Removing the image from my local Docker registry resolved the issue. This is because Docker could now pull down the latest version of the image, one where the command line option was supported. There was no longer an image tagged with :latest in my local Docker registry that prevented Docker from pulling down a newer version of the image.
+
+There are other problems associated with using the :latest tag that I will not mention in this article, but here is an amazing blog post if you are interested: <Link href="https://vsupalov.com/docker-latest-tag/" target="_blank">https://vsupalov.com/docker-latest-tag/</Link>
+
+## Summary
+
+Tagging Docker images is a must. Not doing so can result in a whole host of issues, one of which is version instability. To prevent these issues, tag all Docker images in your Docker Compose files! Ensuring all developers have the same local environment will mitigate a lot of issues that you might run into in the future.
