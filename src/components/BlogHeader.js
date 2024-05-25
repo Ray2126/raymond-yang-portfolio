@@ -9,7 +9,7 @@ export default function BlogHeader({ post }) {
     <header className="mb-12">
       {usePathname() === '/blog' ?
         <h2>
-          <Link href={`/blog/${slug}`}>{title}</Link>
+          <Link className="styled-link" href={`/blog/${slug}`}>{title}</Link>
         </h2> :
         <h1>{title}</h1>
       }

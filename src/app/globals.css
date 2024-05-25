@@ -13,6 +13,7 @@
   :root {
     --primary-rgb: 168, 173, 178;
     --secondary-rbg: 238, 245, 252;
+    --tertiary-rgb: 116, 127, 224;
     --background-rgb: 12, 15, 17;
   }
 }
@@ -46,11 +47,6 @@ body {
       rounded-md
       p-1
     ;
-    transition: all .1s ease;
-  }
-
-  .btn:hover {
-    transform: scale(1.01);
   }
 
   .pill {
@@ -60,6 +56,50 @@ body {
       py-0.5
       px-3
     ;
+  }
+
+  .styled-link {
+    color: rgb(var(--secondary-rgb));
+  }
+
+  .styled-link-tertiary {
+    color: rgb(var(--tertiary-rgb));
+  }
+
+  .styled-link:hover,
+  .styled-link-tertiary:hover {
+    opacity: 0.7;
+  }
+
+  .nav-link {
+    display: block;
+    position: relative;
+    padding: 0.2em 0;
+  }
+
+  .nav-link:hover {
+    color: rgb(var(--tertiary-rgb));
+    opacity: 0.7;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background-color: rgb(var(--tertiary-rgb));
+    transition: opacity 200ms, transform 200ms;
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+  }
+
+  .nav-link:hover::after {
+    opacity: 1;
+    transform: translate3d(0, 0.2em, 0);
+    transform: scale(1);
   }
 }
 

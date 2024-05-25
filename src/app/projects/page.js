@@ -39,11 +39,11 @@ export default function Projects() {
               <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                 <h2>{project.name}</h2>
                 <div className="flex space-x-1 sm:space-x-4">
-                  <Link className="btn" target="_blank" href={project.demoLink}>
+                  <Link className="btn styled-link" target="_blank" href={project.demoLink}>
                     <span className="mr-1">{project.demoIcon()}</span>
                     <span>{project.demoText}</span>
                   </Link>
-                  <Link className="btn" target="_blank" href={project.githubLink}>
+                  <Link className="btn styled-link" target="_blank" href={project.githubLink}>
                     <span className="mr-1"><FaGithub /></span>
                     <span>Source Code</span>
                   </Link>
