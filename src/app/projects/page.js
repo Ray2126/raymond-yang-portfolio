@@ -36,7 +36,7 @@ export default function Projects() {
               <Image className="hidden md:block rounded-l-2xl" src={project.image} alt={project.name} width={200} height={500} quality={100} />
 
             <div className="flex flex-col h-full space-y-4 my-4">
-              <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+              <div className="flex flex-col items-center md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                 <h2>{project.name}</h2>
                 <div className="flex space-x-1 sm:space-x-4">
                   <Link className="btn styled-link" target="_blank" href={project.demoLink}>
