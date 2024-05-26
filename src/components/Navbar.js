@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <nav className="flex justify-between items-center py-2 md:py-8 px-2">
-      <Link className="nav-link" href="/">Raymond Yang</Link>
+      <Link className="nav-link" href="/">RAYMOND YANG</Link>
       <div className="hidden md:flex justify-between space-x-8">
         <Link className="nav-link" href="/blog">Blog</Link>
         <Link className="nav-link" href="/projects">Projects</Link>

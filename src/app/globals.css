@@ -21,18 +21,27 @@
 body {
   color: rgb(var(--primary-rgb));
   background: rgb(var(--background-rgb));
+  font-family: "Helvetica Neue", sans-serif;
+  @apply
+    text-lg
+    tracking-wide
+  ;
 }
 
 @layer base {
   h1 {
     color: rgb(var(--secondary-rbg));
-    @apply text-4xl;
+    @apply
+      text-4xl
+      font-bold
+    ;
   }
 
   h2 {
     color: rgb(var(--secondary-rbg));
     @apply
       text-2xl
+      font-bold
     ;
   }
 }
@@ -75,6 +84,8 @@ body {
     display: block;
     position: relative;
     padding: 0.2em 0;
+    font-family: "system-ui", Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 700;
   }
 
   .nav-link:hover {

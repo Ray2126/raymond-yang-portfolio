@@ -13,7 +13,9 @@ export default function Home() {
           priority
           quality={100}
         />
-        <h1 className="text-3xl md:text-4xl">Hey, I&apos;m Raymond 👋 <br></br>I&apos;m a Full Stack Software Engineer.</h1>
+        <h1 className="text-3xl md:text-4xl">
+          Hey, I&apos;m Raymond 👋 <br></br>I&apos;m a Full Stack Software Engineer.
+        </h1>
       </header>
       <article className="flex flex-col space-y-4">
         <p>I&apos;m based in Auckland, New Zealand and I specialise in crafting robust and dynamic web applications. Currently, I work at centrapay, where I leverage my expertise in both front-end and back-end technologies to deliver exceptional digital payments solutions all over New Zealand.</p>
