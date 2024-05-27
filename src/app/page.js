@@ -23,11 +23,13 @@ export default function Home() {
         <h2>Skills and Expertise</h2>
 
         <ul>
-          <li>Front-End: HTML, CSS, JavaScript, Vue.js, Vuex, React.js, Next.js</li>
-          <li>Back-End: Node.js, Python, Python Flask</li>
-          <li>DevOps: Docker, AWS</li>
-          <li>Databases: MongoDB, MySQL, DynamoDB</li>
-          <li>Testing: Jest, Cypress, Cucumber, Testing Library</li>
+          <li><b>Front-End:</b> HTML, CSS, JavaScript, Vue.js, Vuex, React.js, Next.js, Storybook, React Native</li>
+          <li><b>Back-End:</b> Node.js, Express.js, Hapi, Python (Flask)</li>
+          <li><b>DevOps:</b> Docker, AWS, Kubernetes, Terraform</li>
+          <li><b>Monitoring & Observability:</b> CloudWatch, Sentry, New Relic, Datadog</li>
+          <li><b>Databases:</b> MongoDB, MySQL, DynamoDB, Redis</li>
+          <li><b>Testing:</b> Jest, Cypress, Cucumber, Testing Library</li>
+          <li><b>Other:</b> Slack, Notion, Miro, Mermaid</li>
         </ul>
 
         <h2>Education</h2>
