@@ -5,7 +5,7 @@
 :root {
   --primary-rgb: 168, 173, 178;
   --secondary-rbg: 238, 245, 252;
-  --tertiary-rgb: 116, 127, 224;
+  --tertiary-rgb: 67, 133, 215;
   --background-rgb: 12, 15, 17;
 }
 
@@ -64,6 +64,7 @@ body {
 
   .styled-link-tertiary {
     color: rgb(var(--tertiary-rgb));
+    text-decoration: underline;
   }
 
   .styled-link:hover,

@@ -31,13 +31,13 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="md:hidden">
-        <button onClick={() => setMobileMenuIsOpen(true)}>
+        <button onClick={() => setMobileMenuIsOpen(true)} aria-label="Open Menu">
           <RxHamburgerMenu className="h-7 w-7" />
         </button>
         {
           mobileMenuIsOpen ?
           <div className="mobile-menu">
-            <button className="flex justify-end w-full">
+            <button className="flex justify-end w-full" aria-label="Close Menu">
               <RxCross1 className="h-7 w-7" onClick={() => setMobileMenuIsOpen(false)} />
             </button>
             <div className="text-2xl space-y-2 mt-8 flex flex-col">
