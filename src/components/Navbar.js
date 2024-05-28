@@ -26,7 +26,7 @@ export default function Navbar() {
       <div className="hidden md:flex justify-between space-x-8">
         <Link className="nav-link" href="/blog">Blog</Link>
         <Link className="nav-link" href="/projects">Projects</Link>
-        <Link download className="nav-link flex items-center" href="/raymond_yang_cv.pdf" rel="noopener noreferrer">
+        <Link className="nav-link flex items-center" href="/cv/raymond_yang_cv.pdf" target="_blank" rel="noopener noreferrer">
           CV <MdOutlineFileDownload className="h-6 w-6" />
         </Link>
       </div>
@@ -44,7 +44,7 @@ export default function Navbar() {
               <button className="nav-link" onClick={() => handleLinkClick('/')}>Home</button>
               <button className="nav-link" onClick={() => handleLinkClick('/blog')}>Blog</button>
               <button className="nav-link" onClick={() => handleLinkClick('/projects')}>Projects</button>
-              <Link download className="nav-link flex items-center justify-center" href="/raymond_yang_cv.pdf" rel="noopener noreferrer">
+              <Link className="nav-link flex items-center justify-center" href="/cv/raymond_yang_cv.pdf" target="_blank" rel="noopener noreferrer">
                 CV <MdOutlineFileDownload className="h-6 w-6" />
               </Link>
             </div>
