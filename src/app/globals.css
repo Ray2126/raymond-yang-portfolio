@@ -3,19 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --primary-rgb: 12, 15, 17;
+  --primary-rgb: 168, 173, 178;
   --secondary-rbg: 238, 245, 252;
-  --background-rgb: 168, 173, 178;
-  --hover-rgb: 67, 133, 215;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-rgb: 168, 173, 178;
-    --secondary-rbg: 238, 245, 252;
-    --tertiary-rgb: 116, 127, 224;
-    --background-rgb: 12, 15, 17;
-  }
+  --tertiary-rgb: 116, 127, 224;
+  --background-rgb: 12, 15, 17;
 }
 
 body {
