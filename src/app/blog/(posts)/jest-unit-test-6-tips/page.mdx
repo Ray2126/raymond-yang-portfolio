@@ -1,0 +1,168 @@
+import BlogHeader from '@/components/BlogHeader';
+
+export const metadata = {
+  title: '✨ 6 tips to write amazing Jest unit tests',
+  publishDate: '2024-05-29T10:26:13.786Z',
+  readTimeMins: '4',
+  category: 'Programming'
+};
+
+<BlogHeader post={{
+  title: metadata.title,
+  publishDate: metadata.publishDate,
+  readTimeMins: metadata.readTimeMins,
+  category: metadata.category,
+}} />
+
+Unit testing is a crucial part of modern software development, ensuring that individual units of code work as intended. Jest is a popular JavaScript testing framework that makes writing unit tests delightful.
+
+Writing tests using best practices is essential not only for verifying correctness but also for maintaining a clean, efficient, and scalable codebase.
+
+Well-written tests serve as self-documenting code, providing clear examples of how different parts of the system should behave, which enhances overall code comprehension. Additionally, comprehensive test suites act as a safety net, catching regressions and ensuring that new changes do not unintentionally break existing functionality. This proactive approach to testing helps maintain the stability and reliability of your software over time.
+
+By following these tips, you can enhance the maintainability of your tests, ensuring they remain valuable assets rather than becoming technical debt.
+
+Here are my 6 top tips to write amazing Jest unit tests!
+
+## 1. Use Descriptive Names
+Descriptive test names make it clear what the test is verifying. They should also make it obvious where the failure in the code is. A good naming convention I follow is "`it(should do_something when some_condition)`".
+
+```javascript
+it('should return user data when called with a valid user ID', () => {
+  const userId = 123;
+  const expectedData = { id: 123, name: 'John Doe' };
+  const result = getUserData(userId);
+  expect(result).toEqual(expectedData);
+});
+```
+
+## 2. Arrange, Act, Assert Pattern
+The Arrange, Act, Assert (AAA) pattern is a common structure for writing tests. It helps make tests clear and easy to follow.
+
+Arrange: Set up the conditions for the test.  
+Act: Execute the function or method under test.  
+Assert: Check that the outcomes are as expected.  
+
+``` javascript
+it('should return the sum 3 when given 1 and 2', () => {
+  // Arrange
+  const a = 1;
+  const b = 2;
+
+  // Act
+  const result = add(a, b);
+
+  // Assert
+  expect(result).toBe(3);
+});
+```
+
+## 3. Avoid Logic in the Test Itself
+Tests should be straightforward and avoid containing logic. Assertions should be made directly, rather than through calculations. This prevents errors in the test code and keeps the focus on the functionality being tested.
+
+```javascript
+// BAD ❌
+it('should return true if the user is an adult', () => {
+  const user = { age: 20 };
+  const isAdult = user.age >= 18; // Calculates expected value
+  const result = isUserAdult(user);
+  expect(result).toBe(isAdult);
+});
+
+// GOOD ✅
+it('should return true if the user is an adult', () => {
+  const user = { age: 20 };
+  const result = isUserAdult(user);
+  expect(result).toBe(true);  // Directly asserting the expected value
+});
+```
+
+## 4. Tests Should Be Isolated
+Tests should not depend on each other. Each test should set up its own context and not rely on the outcome of other tests. Tests that depend on each other are usually ticking time bombs. They will start failing when reordered, and it will be hard to debug why.
+
+```javascript
+// BAD ❌
+const users = [];
+
+it('should have 1 user in the array when pushing once', () => {
+  const user = { id: 1, name: 'Alice' };
+  users.push(user);
+  expect(users.length).toEqual(1);
+});
+
+it('should have 2 users in the array when pushing twice', () => {
+  const user1 = { id: 1, name: 'Alice' };
+  const user2 = { id: 2, name: 'Bob' };
+  users.push(user1);
+  users.push(user2);
+
+  // users array has 1 user already from previous test
+  expect(users.length).toEqual(2);
+});
+
+// GOOD ✅
+let users;
+
+beforeEach(() => {
+  users = []; // users array is reset between every test
+});
+
+it('should have 1 user in the array when pushing once', () => {
+  const user = { id: 1, name: 'Alice' };
+  users.push(user);
+  expect(users.length).toEqual(1);
+});
+
+it('should have 2 users in the array when pushing twice', () => {
+  const user1 = { id: 1, name: 'Alice' };
+  const user2 = { id: 2, name: 'Bob' };
+  users.push(user1);
+  users.push(user2);
+  expect(users.length).toEqual(2);
+});
+```
+
+## 5. Test One Thing at a Time
+Each test should focus on a single aspect of the functionality. This approach makes tests more granular and easier to diagnose when they fail. A useful rule of thumb is that if you find yourself using "and" in the test description, it's a sign that the test should be split into multiple tests.
+
+```javascript
+// BAD ❌
+it('should have the item in the list when it is added, and should not have the item from the list when it is removed', () => {
+  const list = [];
+  addItemToList(list, 'item1');
+  expect(list).toContain('item1');
+
+  removeItemFromList(list, 'item1');
+  expect(list).not.toContain('item1');
+});
+
+// GOOD ✅
+it('should have the item in the list when it is added', () => {
+  const list = [];
+  addItemToList(list, 'item1');
+  expect(list).toContain('item1');
+});
+
+it('should not have the item from the list when it is removed', () => {
+  const list = ['item1', 'item2'];
+  removeItemFromList(list, 'item1');
+  expect(list).not.toContain('item1');
+});
+```
+
+## 6. Stub External Dependencies
+When your code depends on external services or modules, stub or mock these dependencies to ensure tests are fast, reliable, and isolated.
+
+```javascript
+jest.mock('axios');
+
+it('should have data returned when it is fetched from the API', async () => {
+  const data = { userId: 1, id: 1, title: 'test title' };
+  axios.get.mockResolvedValue({ data });
+
+  const result = await fetchDataFromApi(1);
+  expect(result).toEqual(data);
+});
+```
+
+By following these tips, you can write Jest unit tests that are clear, maintainable, and effective at ensuring your code behaves as expected. With well-written tests, you can confidently refactor code, add new features, and catch regressions early in the development process. Happy testing!
