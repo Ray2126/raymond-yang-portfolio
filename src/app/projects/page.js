@@ -5,24 +5,32 @@ import { LuExternalLink } from "react-icons/lu";
 
 const projects = [
   {
-    name: 'Crypto Tracker',
-    description: 'Crypto Tracker is an Android app that connects to the CoinGecko API to display the top 10 cryptocurrencies based on their market capitalization. It provides market movement data for a specific time period. Users have the flexibility to customize the time period and view the top coins for the day, week, month, or year.',
-    demoIcon: FaGooglePlay,
-    demoText: 'Google Play', 
-    demoLink: 'https://play.google.com/store/apps/details?id=com.cryptotrackerapp123',
-    githubLink: 'https://github.com/Ray2126/crypto-tracker',
-    technologies: ['Javascript', 'React Native', 'Expo', 'CoinGecko API'],
-    image: '/cryptoTracker.webp',
-  },
-  {
     name: 'Tabs',
     description: 'Tabs is a mobile app that uses OCR technology to convert handwritten notes into digital text, streamlining file organization and task management by integrating with Microsoft APIs. Developed by a team of six for a final year Computer Science project, it received the Excellence award from the Computer Science department.',
+    links: [
+      { icon: LuExternalLink, text: 'Demo', href: 'https://www.capitalise.space/projects/654d7ef11d6ecfc86ae1e10c' },
+      { icon: FaGithub, text: 'Source Code', href: 'https://github.com/uoa-compsci399-s2-2023/capstone-project-team-9' },
+    ],
     demoIcon: LuExternalLink,
-    demoText: 'Demo', 
+    demoText: 'Demo',
     demoLink: 'https://www.capitalise.space/projects/654d7ef11d6ecfc86ae1e10c',
     githubLink: 'https://github.com/uoa-compsci399-s2-2023/capstone-project-team-9',
     technologies: ['Javascript', 'React Native', 'Expo', 'Microsoft Graph API', 'AWS Textract'],
     image: '/tabs.webp',
+  },
+  {
+    name: 'Crypto Tracker',
+    description: 'Crypto Tracker is an Android app that connects to the CoinGecko API to display the top 10 cryptocurrencies based on their market capitalization. It provides market movement data for a specific time period. Users have the flexibility to customize the time period and view the top coins for the day, week, month, or year.',
+    links: [
+      { icon: FaGooglePlay, text: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.cryptotrackerapp123' },
+      { icon: FaGithub, text: 'Source Code', href: 'https://github.com/Ray2126/crypto-tracker' },
+    ],
+    demoIcon: FaGooglePlay,
+    demoText: 'Google Play',
+    demoLink: 'https://play.google.com/store/apps/details?id=com.cryptotrackerapp123',
+    githubLink: 'https://github.com/Ray2126/crypto-tracker',
+    technologies: ['Javascript', 'React Native', 'Expo', 'CoinGecko API'],
+    image: '/cryptoTracker.webp',
   },
 ];
 
@@ -39,14 +47,12 @@ export default function Projects() {
                 <div className="flex flex-col items-center md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                   <h2>{project.name}</h2>
                   <div className="flex space-x-1 sm:space-x-4">
-                    <Link className="btn styled-link" target="_blank" href={project.demoLink}>
-                      <span className="mr-1">{project.demoIcon()}</span>
-                      <span>{project.demoText}</span>
-                    </Link>
-                    <Link className="btn styled-link" target="_blank" href={project.githubLink}>
-                      <span className="mr-1"><FaGithub /></span>
-                      <span>Source Code</span>
-                    </Link>
+                    {project.links.map(link => (
+                      <Link className="btn styled-link" target="_blank" href={link.href}>
+                        <span className="mr-1">{link.icon()}</span>
+                        <span>{link.text}</span>
+                      </Link>
+                    ))}
                   </div>
                 </div>
                 <div className="space-y-4">
