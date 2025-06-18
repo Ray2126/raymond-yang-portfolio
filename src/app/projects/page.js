@@ -32,30 +32,31 @@ export default function Projects() {
       <h1>Projects</h1>
       <div className="space-y-12">
         {projects.map(project => (
-          <div key={project.name} className="border-2 rounded-2xl border-color-primary flex items-center min-h-80 md:space-x-4 px-2 md:pl-0">
-              <Image className="hidden md:block rounded-l-2xl" src={project.image} alt={project.name} width={200} height={500} quality={100} />
-
-            <div className="flex flex-col h-full space-y-4 my-4">
-              <div className="flex flex-col items-center md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-                <h2>{project.name}</h2>
-                <div className="flex space-x-1 sm:space-x-4">
-                  <Link className="btn styled-link" target="_blank" href={project.demoLink}>
-                    <span className="mr-1">{project.demoIcon()}</span>
-                    <span>{project.demoText}</span>
-                  </Link>
-                  <Link className="btn styled-link" target="_blank" href={project.githubLink}>
-                    <span className="mr-1"><FaGithub /></span>
-                    <span>Source Code</span>
-                  </Link>
+          <div key={project.name} className="flex space-x-8">
+            <Image className="hidden md:block" src={project.image} alt={project.name} width={800} height={500} quality={100} />
+            <div className="border-2 rounded-2xl border-color-primary flex items-center md:space-x-4 px-2 pt-2">
+              <div className="flex flex-col h-full space-y-4 my-4">
+                <div className="flex flex-col items-center md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                  <h2>{project.name}</h2>
+                  <div className="flex space-x-1 sm:space-x-4">
+                    <Link className="btn styled-link" target="_blank" href={project.demoLink}>
+                      <span className="mr-1">{project.demoIcon()}</span>
+                      <span>{project.demoText}</span>
+                    </Link>
+                    <Link className="btn styled-link" target="_blank" href={project.githubLink}>
+                      <span className="mr-1"><FaGithub /></span>
+                      <span>Source Code</span>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-              <div className="space-y-4">
-                <p>{project.description}</p>
-                <p className="flex flex-wrap items-center space-x-3">
-                  {project.technologies.map(t => (
-                    <span key={t} className="pill mb-1">{t}</span>
-                  ))}
-                </p>
+                <div className="space-y-4">
+                  <p>{project.description}</p>
+                  <p className="flex flex-wrap items-center space-x-3">
+                    {project.technologies.map(t => (
+                      <span key={t} className="pill mb-1">{t}</span>
+                    ))}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
