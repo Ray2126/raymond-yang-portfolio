@@ -1,0 +1,166 @@
+import BlogHeader from '@/components/BlogHeader';
+
+export const metadata = {
+  title: '🫳 How to Build a Drag and Drop Component in Vue 3',
+  publishDate: '2025-06-21T10:27:00.000Z',
+  readTimeMins: '5',
+  category: 'Programming'
+};
+
+<BlogHeader post={{
+  title: metadata.title,
+  publishDate: metadata.publishDate,
+  readTimeMins: metadata.readTimeMins,
+  category: metadata.category,
+}} />
+
+Recently, I had my first encounter building a drag-and-drop component using Vue 3. I initially searched for a library to handle the functionality but couldn't find one that fit my needs. Instead of compromising, I decided to build a simple drag-and-drop feature myself using native browser APIs.
+
+There's an official HTML API for drag-and-drop available here: [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API). While it's not the most intuitive API to work with, combining it with Vue's reactivity system made for an interesting and rewarding experience.
+
+In this tutorial, I'll walk you through how to create a minimal drag-and-drop component from scratch using Vue 3 and the Composition API.
+
+If you want to see the full example:
+
+💻 Full code: [GitHub](https://github.com/Ray2126/vue-drag-and-drop).
+<br></br>▶️ Try it live: [StackBlitz](https://stackblitz.com/edit/simple-drag-and-drop-vue3?file=src%2FApp.vue).
+
+## 1. Setting up
+Let's begin by setting up a basic Vue app. We'll scaffold our app with a list of draggable items, each with a unique background color to make dragging and dropping more visually obvious.
+
+Here's the initial App.vue setup:
+```javascript
+<script setup>
+  import { ref } from 'vue';
+
+  const items = ref([
+    { id: '1', text: 'first item', backgroundColor: 'lightblue' },
+    { id: '2', text: 'second item', backgroundColor: 'pink' },
+    { id: '3', text: 'third item', backgroundColor: 'yellow' },
+    { id: '4', text: 'fourth item', backgroundColor: 'lightgreen' },
+    { id: '5', text: 'fifth item', backgroundColor: 'violet' },
+  ]);
+</script>
+
+<template>
+  <main>
+    <div
+      v-for="item in items"
+      :key="item.id"
+      class="item-container"
+      :style="{ backgroundColor: item.backgroundColor }"
+    >
+      {{ item.text }}
+    </div>
+  </main>
+</template>
+
+<style scoped>
+  .item-container {
+    height: 300px;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: larger;
+  }
+</style>
+```
+
+This displays a vertical list of colored boxes, each representing an item we will soon make draggable.
+
+
+## 2. Making Items Draggable
+
+Next, let's make each item draggable and capture which one is being dragged. To do this, we will:
+- Add draggable="true" to the element.
+- Use Vue's v-for index to keep track of the dragged item.
+- Listen for the dragstart event and store the index of the dragged item.
+
+Here's the updated code:
+
+```javascript
+<script setup>
+// other code
+const dragStartIndex = ref(null);
+
+function dragStart(index) {
+  dragStartIndex.value = index;
+}
+</script>
+
+<template>
+  <main>
+    <div
+      v-for="(item, index) in items"
+      :key="item.id"
+      class="item-container"
+      :style="{ backgroundColor: item.backgroundColor }"
+      draggable="true"
+      @dragstart="dragStart(index)"
+    >
+      {{ item.text }}
+    </div>
+  </main>
+</template>
+```
+
+At this point, you'll be able to drag items around—but nothing will happen when you drop them. Let's fix that next.
+
+## 3. Handling Drop Events
+
+To allow reordering of items when an element is dropped, we need to:
+- Handle the drop event.
+- Prevent the default behavior of the dragover event. By default, most HTML elements do not allow dropping. Preventing the default behavior on dragover signals to the browser that this element can accept a drop.
+- Determine where the item was dropped and update the array accordingly.
+
+```javascript
+<script setup>
+// other code
+const dragStartIndex = ref(null);
+
+function dragStart(index) {
+  dragStartIndex.value = index;
+}
+
+function onDrop(event) {
+  const draggedEl = event.currentTarget;
+  const children = [...draggedEl.parentElement.children];
+  const dragTargetIndex = children.indexOf(draggedEl);
+  if (dragStartIndex.value === dragTargetIndex) {
+    return;
+  }
+  const updated = [...items.value];
+  const [movedItem] = updated.splice(dragStartIndex.value, 1);
+  updated.splice(dragTargetIndex, 0, movedItem);
+  items.value = updated;
+  dragStartIndex.value = null;
+}
+</script>
+
+<template>
+  <main>
+    <div
+      v-for="(item, index) in items"
+      :key="item.id"
+      class="item-container"
+      :style="{ backgroundColor: item.backgroundColor }"
+      draggable="true"
+      @dragstart="dragStart(index)"
+      @dragover.prevent
+      @drop="onDrop"
+    >
+      {{ item.text }}
+    </div>
+  </main>
+</template>
+```
+
+That's it! With this in place, you can now drag and drop items to reorder them.
+
+## Final Thoughts
+
+This is a minimal example, but it lays the groundwork for more complex drag-and-drop behavior. You can enhance it further by:
+- Adding animations for smoother transitions.
+- Supporting horizontal layouts or grid-based positioning.
+- Highlighting drop targets visually.
+- Supporting nested drag-and-drop structures.
